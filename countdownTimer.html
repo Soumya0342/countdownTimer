@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+</head>
+<body>
+    <h1>Enter your input:</h1>
+    <input type="number" id="timer">
+    <button id="button">Start Countdown</button>
+    <h1 id="countdown"></h1>
+
+    <script>
+        const timer = document.getElementById("timer");
+        const button = document.getElementById("button");
+        const countdown = document.getElementById("countdown");
+        let remaining;
+        let interval;
+
+        function display(){
+            if(remaining >0){
+                countdown.textContent = "You have " + remaining + " Seconds";
+                remaining--;
+            }
+            else{
+                countdown.textContent = "Times Up!";
+                clearInterval(interval);
+            }
+        }
+        function checkInput(){
+            remaining = parseInt(timer.value);
+            if(isNaN(remaining)||remaining<=0){
+                countdown.textContent = "Wrong Input";
+            }
+            else{
+                interval = setInterval(display, 1000);
+            }
+        }
+        button.addEventListener("click",checkInput);
+        
+
+
+        
+    </script>
+    
+</body>
+</html>
